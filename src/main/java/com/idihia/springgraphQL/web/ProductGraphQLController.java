@@ -50,7 +50,7 @@ public class ProductGraphQLController {
     @QueryMapping
     public List<Product> getProductByCategory(@Argument Long categoryId){
         Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new RuntimeException(format("The requested category %s could not be found.",categoryId)));
+                .orElseThrow(() -> new RuntimeException(format("The requested category %s could not be found!.",categoryId)));
         return productRepository.findByCategory(category);
     }
 
