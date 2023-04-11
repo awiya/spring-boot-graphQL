@@ -1,8 +1,12 @@
 package com.idihia.springgraphQL.repository;
 
 
+import com.idihia.springgraphQL.entities.Category;
 import com.idihia.springgraphQL.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface ProductRepository extends JpaRepository<Product, String> {
+    List<Product> findByCategory(Category category);
 }

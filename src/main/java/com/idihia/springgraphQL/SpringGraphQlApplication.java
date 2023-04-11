@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -21,11 +22,12 @@ public class SpringGraphQlApplication {
         SpringApplication.run(SpringGraphQlApplication.class, args);
     }
 
-    @Bean
+
     CommandLineRunner commandLineRunner(CategoryRepository categoryRepository,
                                         ProductRepository productRepository) {
         return args -> {
             Random random = new Random();
+            DecimalFormat df = new DecimalFormat("#.##");
 
             List.of("Computer", "Printer", "Smartphone").forEach(cat -> {
                 Category category = Category.builder()

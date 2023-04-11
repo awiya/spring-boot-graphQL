@@ -2,7 +2,8 @@ type Query {
     allProducts : [Product],
     getProductById(id :String) : Product,
     allCategories:[Category],
-    getCategoryById(id:Float) : Category
+    getCategoryById(id:Float) : Category,
+    getProductByCategory(categoryId: Float ):[Product]
 }
 type Mutation {
     saveProduct(product : ProductRequest ) : Product,

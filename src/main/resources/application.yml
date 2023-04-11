@@ -3,6 +3,11 @@ spring:
     url: jdbc:mysql://localhost:3306/spring_graph
     password:
     username: root
+
+  graphql:
+    graphiql:
+      enabled: true
+
   jpa:
     database-platform: org.springframework.orm.jpa.vendor.Database.MYSQL
     generate-ddl: true

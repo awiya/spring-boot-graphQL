@@ -24,7 +24,6 @@ public class ProductGraphQLController {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 
-
     @QueryMapping
     public List<Product> allProducts() {
         return productRepository.findAll();
@@ -48,9 +47,17 @@ public class ProductGraphQLController {
                 .orElseThrow(() -> new RuntimeException(format("Category %s not found", id)));
     }
 
+    @QueryMapping
+    public List<Product> getProductByCategory(@Argument Long categoryId){
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException(format("The requested category %s could not be found.",categoryId)));
+        return productRepository.findByCategory(category);
+    }
+
     @MutationMapping
     public Product saveProduct(@Argument ProductRequestDTO product) {
-        Category category = categoryRepository.findById(product.categoryId()).orElse(null);
+        Category category = categoryRepository.findById(product.categoryId())
+                .orElseThrow(() -> new RuntimeException(format("The requested category %s could not be found.", product.categoryId())));
         Product productToSave = new Product();
         productToSave.setId(UUID.randomUUID().toString());
         productToSave.setName(product.name());
